@@ -26,3 +26,10 @@ export const getArticleById = (id) => {
         .then(({data}) => data.article)
     )
 }
+
+export const getArticleComments = (id) => {
+    return (
+        axios.get(`${API_URL}/api/articles/${id}/comments`)
+        .then(({data})=> data.comments)
+    )
+} 

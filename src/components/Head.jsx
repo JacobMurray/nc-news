@@ -1,10 +1,10 @@
 import React from 'react';
 import './css/Head.css';
 
-const Head = () => {
+const Head = ({user}) => {
     return (
         <div className='head'>
-            Head
+        <p>{user}</p>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api';
+import './css/Articles.css';
+import Comments from './Comments';
 
 class Article extends Component {
   state = {
@@ -10,10 +12,16 @@ class Article extends Component {
     const { belongs_to, body, created_by, title, votes } = this.state.article;
     return (
       <div>
-        <h3>{title}</h3>
-        <p>{body}</p>
-        <h4>Belongs to: {belongs_to}</h4>
-        <h4>votes: {votes}</h4>
+        <div className="article">
+          <h3>{title}</h3>
+          <p>{body}</p>
+          <h4>Belongs to: {belongs_to}</h4>
+          <h4>votes: {votes}</h4>
+          {created_by && <h3>Created_by: {created_by.name}</h3>}
+        </div>
+        <div className="comments">
+          <Comments article_id={this.props.article_id} />
+        </div>
       </div>
     );
   }

@@ -7,6 +7,8 @@ const Nav = () => {
         <Link to='/' >Home</Link>
         {' || '}
         <Link to='/post'>Post</Link>
+        {' || '}
+        <Link to='/login'>Login</Link>
         </div>
     );
 };
