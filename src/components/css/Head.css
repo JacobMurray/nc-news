@@ -1,5 +1,10 @@
 .head {
-    background-color: pink;
+    background-color: black;
+    color: white;
     border: 2px solid black;
     grid-area: header;
+    background-image: url('/nc_logo.png');
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: 50px center;
   }

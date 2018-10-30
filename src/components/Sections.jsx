@@ -9,7 +9,7 @@ class Sections extends Component {
     render() {
         return (
             <div className='section'>
-                Section
+                Sections
                 {this.state.topics.map((topic) => {
                     return <div key={topic._id}><Link to={`/topics/${topic.slug}`} >{topic.title}</Link> </div>
                 })}

@@ -3,7 +3,7 @@
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr 1fr 8fr 1fr;
+  grid-template-rows: 70px 30px 8fr 1fr;
   grid-template-areas:
     'header header'
     'nav nav'
@@ -12,19 +12,15 @@
 }
 
 .nav {
-  background-color: aqua;
+  background-color: cornsilk;
   grid-area: nav;
 }
 
 .section {
-  background-color: blueviolet;
+  background-color: grey;
   grid-area: section;
 }
 
-.articles {
-  background-color: chartreuse;
-  grid-area: articles;
-}
 
 .foot {
   background-color: chocolate;

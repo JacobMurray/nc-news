@@ -1,0 +1,15 @@
+.articles {
+    background-color: lightgrey;
+    grid-area: articles;
+  }
+
+  .article {
+    border: solid 2px black;
+    margin-bottom: 10px;
+    border-radius: 5px;
+
+  }
+
+.artTitle {
+
+}

@@ -6,6 +6,7 @@ import Sections from './components/Sections';
 import Articles from './components/Articles';
 import Foot from './components/Foot';
 import { Router } from '@reach/router';
+import Post from './components/Post';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Router>
             <Articles path="/" />
             <Articles path={`/topics/:topic`} />
+            <Post path="/post" />
           </Router>
         </div>
         <Foot />
