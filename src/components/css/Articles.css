@@ -1,6 +1,7 @@
 .articles {
     background-color: lightgrey;
     grid-area: articles;
+    text-decoration: none;
   }
 
   .article {
@@ -12,4 +13,9 @@
 
 .artTitle {
 
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

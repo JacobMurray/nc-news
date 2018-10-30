@@ -18,3 +18,11 @@ export const getArticles = (topic) => {
         .then(({data})=> data.article)
     )
 }
+
+export const getArticleById = (id) => {
+    return (
+
+        axios.get(`${API_URL}/api/articles/${id}`)
+        .then(({data}) => data.article)
+    )
+}
