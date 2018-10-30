@@ -15,8 +15,8 @@ class Articles extends Component {
         {this.state.articles[0] &&
           this.state.articles.map(article => {
             return (
-              <Link to={`/articles/${article._id}`}>
-                <div key={article._id} className="article">
+              <Link key={article._id} to={`/articles/${article._id}`}>
+                <div  className="article">
                   <h3 className="artTitle">{article.title}</h3>
                   <p>{article.body}</p>
                 </div>

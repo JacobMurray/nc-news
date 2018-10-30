@@ -6,16 +6,20 @@ class Login extends Component {
     }
     render() {
         return (
-            <form>
+            <form onSubmit={(event) => this.props.handleSubmit(event, this.state.username)}>
                 <label>username</label>
                 <input onChange={this.handleOnChange} type="text" name="username" id=""/>
+                <button>Submit</button>
             </form>
         );
     }
 
-    handleOnChange = () => {
-        
+    handleOnChange = (event) => {
+        this.setState({
+            username: event.target.value
+        })
     }
+
 }
 
 export default Login;

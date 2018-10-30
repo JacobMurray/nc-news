@@ -14,7 +14,7 @@ class Comments extends Component {
             <div >
                 <CommentAdder />
                 {this.state.comments[0] && this.state.comments.map(comment => {
-                   return ( <div className='comment'>
+                   return ( <div key={comment._id} className='comment'>
                        <p>{comment.body}</p>
                        <h4>Commentor: {comment.created_by.name}</h4>
                        <h4>votes: {comment.votes}</h4>

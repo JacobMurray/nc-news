@@ -9,32 +9,43 @@ import { Router } from '@reach/router';
 import Post from './components/Post';
 import Article from './components/Article';
 import Login from './components/Login';
+import * as api from './api';
 
 class App extends Component {
   state = {
-    name : ''
-  }
+    user: {}
+  };
   render() {
-
     return (
       <div className="App">
-        <Head className="Head" user={this.state.username}/>
+        <Head className="Head" user={this.state.user.name} />
         <Nav />
         <Sections />
-        <div className='articles'>
-        {this.state.name ? (<Router>
-            <Articles path="/" />
-            <Articles path={`/topics/:topic`} />
-            <Post path="/post" />
-            <Article path="/articles/:article_id"/>
-          </Router>) : 
-        <Login></Login>}
-          
+        <div className="articles">
+          {this.state.user.name ? (
+            <Router>
+              <Articles path="/" />
+              <Articles path={`/topics/:topic`} />
+              <Post path="/post" />
+              <Article path="/articles/:article_id" />
+            </Router>
+          ) : (
+            <Login handleSubmit={this.fetchName}/>
+          )}
         </div>
         <Foot />
       </div>
     );
   }
+
+  fetchName = (event, username) => {
+    event.preventDefault()
+    api.getUserName(username)
+    .then((user) => this.setState({
+      user
+    }))
+  }
+
 }
 
 export default App;

@@ -33,3 +33,10 @@ export const getArticleComments = (id) => {
         .then(({data})=> data.comments)
     )
 } 
+
+export const getUserName = (username) => {
+    return (
+        axios.get(`${API_URL}/api/users/${username}`)
+        .then(({data})=> data.user)
+    )
+}
