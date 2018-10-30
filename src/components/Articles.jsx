@@ -6,22 +6,31 @@ class Articles extends Component {
         articles: []
     }
     render() {
+        console.log(this.state)
+
         return (
+            
             <div className='articles'>
-                Articles
+                {this.props.topic} Articles
+                {this.state.articles[0] && 
+                this.state.articles.map(article => {
+                   return  (<div>{article.title}</div>)
+                })
+                }
             </div>
         );
     }
 
     componentDidMount () {
         this.fetchArticles()
-        .then(articles => this.setState({
-            articles
-        }))
+        
     }
 
     fetchArticles = () => {
-        return api.getArticles()
+        return (api.getArticles(this.props.topic)
+        .then(articles => this.setState({
+            articles
+        })))
     }
 }
 

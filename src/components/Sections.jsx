@@ -11,7 +11,7 @@ class Sections extends Component {
             <div className='section'>
                 Section
                 {this.state.topics.map((topic) => {
-                    return <div key={topic._id}><Link to={`/topic/${topic.slug}`} >{topic.title}</Link> </div>
+                    return <div key={topic._id}><Link to={`/topics/${topic.slug}`} >{topic.title}</Link> </div>
                 })}
             </div>
         );

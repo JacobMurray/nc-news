@@ -11,9 +11,10 @@ export const getTopics = () => {
 }
 
 
-export const getArticles = () => {
+export const getArticles = (topic) => {
+    const url = topic ? `${API_URL}/api/topics/${topic}/articles` : `${API_URL}/api/articles` 
     return (
-        axios.get(`${API_URL}/api/articles`)
+        axios.get(`${url}`)
         .then(({data})=> data.article)
     )
 }
