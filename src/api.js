@@ -40,3 +40,17 @@ export const getUserName = (username) => {
         .then(({data})=> data.user)
     )
 }
+
+export const postArticle = (body, slug) => {
+    return (
+        axios.post( `${API_URL}/api/topics/${slug}/articles`, body)
+        .then(({data})=> data.article)
+    )
+}
+
+export const postComment = (body, address_id) => {
+    return (
+        axios.post(`${API_URL}/api/articles/${address_id}/comments`, body)
+        .then(({data}) => console.log(data.comment))
+    )
+}

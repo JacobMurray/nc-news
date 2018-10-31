@@ -20,7 +20,7 @@ class Article extends Component {
           {created_by && <h3>Created_by: {created_by.name}</h3>}
         </div>
         <div className="comments">
-          <Comments article_id={this.props.article_id} />
+          <Comments user={this.props.user} article_id={this.props.article_id} />
         </div>
       </div>
     );
@@ -39,6 +39,8 @@ class Article extends Component {
   };
 }
 
-Article.propTypes = {};
+Article.propTypes = {
+  user: PropTypes.object
+};
 
 export default Article;

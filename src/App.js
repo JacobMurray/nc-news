@@ -26,8 +26,8 @@ class App extends Component {
             <Router>
               <Articles path="/" />
               <Articles path={`/topics/:topic`} />
-              <Post path="/post" />
-              <Article path="/articles/:article_id" />
+              <Post path="/post" user={this.state}/>
+              <Article path="/articles/:article_id" user={this.state.user}/>
             </Router>
           ) : (
             <Login handleSubmit={this.fetchName}/>
@@ -36,6 +36,15 @@ class App extends Component {
         <Foot />
       </div>
     );
+  }
+
+  componentDidMount () {
+    const state = localStorage.getItem('state')
+        this.setState(JSON.parse(state))
+  }
+
+  componentDidUpdate () {
+    localStorage.setItem('state' , JSON.stringify(this.state))
   }
 
   fetchName = (event, username) => {

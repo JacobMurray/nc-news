@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import './css/Articles.css';
 import PropTypes from 'prop-types';
-import { navigate, Link } from '@reach/router';
+import { Link } from '@reach/router';
 
 class Articles extends Component {
   state = {
@@ -43,10 +43,6 @@ class Articles extends Component {
         articles
       })
     );
-  };
-
-  goToArticle = event => {
-    console.log(event);
   };
 }
 
