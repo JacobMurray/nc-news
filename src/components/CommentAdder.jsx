@@ -9,7 +9,7 @@ class CommentAdder extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>Comment:</label>
-                <textarea onChange={this.handleOnChange} name="comment" id="" cols="30" rows="10"></textarea>
+                <textarea value={this.state.comment} onChange={this.handleOnChange} name="comment" id="" cols="30" rows="10"></textarea>
                 <button type="submit">Submit</button>
             </form>
         );
@@ -27,7 +27,12 @@ class CommentAdder extends Component {
         const {_id} = this.props.user
         const body = { body : comment, created_by :_id}
         api.postComment(body, this.props.article_id)
-        .then((comment)=>this.props.addComment(comment))
+        .then((comment)=>{
+            this.setState({
+                comment : ''
+            })
+            return this.props.addComment(comment)
+        })
     }
 //(comment)=>this.props.addComment(comment)
     

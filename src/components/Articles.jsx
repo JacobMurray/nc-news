@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import './css/Articles.css';
-import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
+import Votes from './Votes';
 
 class Articles extends Component {
   state = {
@@ -15,12 +15,16 @@ class Articles extends Component {
         {this.state.articles[0] &&
           this.state.articles.map(article => {
             return (
-              <Link key={article._id} to={`/articles/${article._id}`}>
-                <div  className="article">
+              <div className="article" key={article._id}>
+              <Link  to={`/articles/${article._id}`}>
+                <div  >
                   <h3 className="artTitle">{article.title}</h3>
                   <p>{article.body}</p>
+                  
                 </div>
               </Link>
+              <Votes votes={article.votes} article_id={article._id}/>
+              </div>
             );
           })}
       </div>
@@ -45,7 +49,5 @@ class Articles extends Component {
     );
   };
 }
-
-Articles.propTypes = {};
 
 export default Articles;

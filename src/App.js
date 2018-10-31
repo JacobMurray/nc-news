@@ -10,6 +10,7 @@ import Post from './components/Post';
 import Article from './components/Article';
 import Login from './components/Login';
 import * as api from './api';
+import Logout from './components/Logout';
 
 class App extends Component {
   state = {
@@ -28,6 +29,7 @@ class App extends Component {
               <Articles path={`/topics/:topic`} />
               <Post path="/post" user={this.state}/>
               <Article path="/articles/:article_id" user={this.state.user}/>
+              <Logout path="/logout" handleLogout={this.logout}/>
             </Router>
           ) : (
             <Login handleSubmit={this.fetchName}/>
@@ -43,8 +45,11 @@ class App extends Component {
         this.setState(JSON.parse(state))
   }
 
-  componentDidUpdate () {
-    localStorage.setItem('state' , JSON.stringify(this.state))
+  componentDidUpdate (prevProps, prevState) {
+    if(prevState.user !== this.state.user){
+      localStorage.setItem('state' , JSON.stringify(this.state))
+    }
+    
   }
 
   fetchName = (event, username) => {
@@ -53,6 +58,12 @@ class App extends Component {
     .then((user) => this.setState({
       user
     }))
+  }
+  logout = () => {
+    localStorage.clear()
+    this.setState({
+      user: {}
+    })
   }
 
 }

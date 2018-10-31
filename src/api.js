@@ -51,6 +51,14 @@ export const postArticle = (body, slug) => {
 export const postComment = (body, address_id) => {
     return (
         axios.post(`${API_URL}/api/articles/${address_id}/comments`, body)
-        .then(({data}) => console.log(data.comment))
+        .then(({data}) => data.comment)
+    )
+}
+
+export const patchVote = (direction, id, comment) => {
+        const url = comment ? `${API_URL}/api/comments/${id}?vote=${direction}` : `${API_URL}/api/articles/${id}?vote=${direction}`
+    return (
+        axios.patch(url)
+        .then(({data})=> data)
     )
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as api from '../api';
 import './css/Articles.css';
 import Comments from './Comments';
+import Votes from './Votes';
 
 class Article extends Component {
   state = {
@@ -16,7 +17,7 @@ class Article extends Component {
           <h3>{title}</h3>
           <p>{body}</p>
           <h4>Belongs to: {belongs_to}</h4>
-          <h4>votes: {votes}</h4>
+          <Votes votes={votes} article_id={this.props.article_id}/>
           {created_by && <h3>Created_by: {created_by.name}</h3>}
         </div>
         <div className="comments">
@@ -37,6 +38,8 @@ class Article extends Component {
       })
     );
   };
+
+  
 }
 
 Article.propTypes = {

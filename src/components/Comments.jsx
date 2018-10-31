@@ -3,6 +3,7 @@ import * as api from '../api';
 import PropTypes from 'prop-types';
 import './css/comment.css';
 import CommentAdder from './CommentAdder';
+import Votes from './Votes';
 
 class Comments extends Component {
   state = {
@@ -22,7 +23,7 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
-                <h4>votes: {comment.votes}</h4>
+                <Votes comment={true} votes={comment.votes} article_id={comment._id}/>
               </div>
             );
           })}
@@ -43,7 +44,7 @@ class Comments extends Component {
 
   addComment = comment => {
       this.setState(prevState => {
-        return {comments : [...prevState.comments, comment]};
+        return {comments : [ comment,...prevState.comments ]};
       });
   };
 }
