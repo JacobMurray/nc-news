@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import * as api from '../api';
 import PropTypes from 'prop-types';
+import {handleVoteMod} from '../utils.js'
+import './css/vote.css'
 
 class Votes extends Component {
     state = {
-        votes : this.props.votes,
-        upVote : false,
-        downVote : false
+        voteMod: 0
     }
     render() {
         return (
             <div>
-                <h4>votes: {this.state.votes}</h4>
-                <button disabled={this.state.upVote} id='upVote' onClick={(event) =>this.handleClick(event,'up', 1)}><i className="fa fa-arrow-up"></i></button>
-                <button disabled={this.state.downVote} id='downVote' onClick={(event) =>this.handleClick(event, 'down', -1)}><i className="fa fa-arrow-down"></i></button>
+                <h4>votes: {this.props.votes + this.state.voteMod}</h4>
+                <button  className={this.state.voteMod === 1 ? 'voteUp' : 'NotClicked'} id='upVote' onClick={() =>this.handleClick('up')}><i className="fa fa-arrow-up"></i></button>
+                <button  className={this.state.voteMod === -1 ? 'voteDown' : 'NotClicked'} id='downVote' onClick={() =>this.handleClick('down')}><i className="fa fa-arrow-down"></i></button>
             </div>
         );
     }
@@ -25,14 +24,14 @@ class Votes extends Component {
             })
         }
     }
-    handleClick = (event, direction, value) => {
-        const vote =event.target.id
-        api.patchVote(direction, this.props.article_id ,this.props.comment)
-        .then(this.setState(prevState => {
-          return { votes : prevState.votes + value,
-                    [vote] : !prevState[vote] }
-        }))
+    handleClick = (direction) => {
+        
+        const voteMod = handleVoteMod(this.state.voteMod, direction, this.props.article_id , this.props.type);
+        this.setState({
+            voteMod
+        })
       }
+
 }
 
 Votes.propTypes = {

@@ -23,7 +23,7 @@ class Articles extends Component {
                   
                 </div>
               </Link>
-              <Votes votes={article.votes} article_id={article._id}/>
+              <Votes votes={article.votes} id={article._id} type={'articles'}/>
               </div>
             );
           })}

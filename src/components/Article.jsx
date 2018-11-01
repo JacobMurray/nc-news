@@ -17,7 +17,7 @@ class Article extends Component {
           <h3>{title}</h3>
           <p>{body}</p>
           <h4>Belongs to: {belongs_to}</h4>
-          <Votes votes={votes} article_id={this.props.article_id}/>
+          <Votes votes={votes} id={this.props.article_id} type={'articles'}/>
           {created_by && <h3>Created_by: {created_by.name}</h3>}
         </div>
         <div className="comments">

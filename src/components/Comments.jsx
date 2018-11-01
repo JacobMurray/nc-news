@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './css/comment.css';
 import CommentAdder from './CommentAdder';
 import Votes from './Votes';
+import DeleteComment from './DeleteComment';
 
 class Comments extends Component {
   state = {
@@ -23,7 +24,8 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
-                <Votes comment={true} votes={comment.votes} article_id={comment._id}/>
+                <Votes type='comments' votes={comment.votes} id={comment._id} />
+                {this.props.user._id === comment.created_by._id && <DeleteComment id={comment._id}/>}
               </div>
             );
           })}

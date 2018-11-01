@@ -55,10 +55,17 @@ export const postComment = (body, address_id) => {
     )
 }
 
-export const patchVote = (direction, id, comment) => {
-        const url = comment ? `${API_URL}/api/comments/${id}?vote=${direction}` : `${API_URL}/api/articles/${id}?vote=${direction}`
+export const patchVote = (direction, id, type) => {
+        const url = `${API_URL}/api/${type}/${id}?vote=${direction}`
     return (
         axios.patch(url)
+        .then(({data})=> data)
+    )
+}
+
+export const deleteComment = id => {
+    return (
+        axios.delete(`${API_URL}/api/comments/${id}`)
         .then(({data})=> data)
     )
 }
