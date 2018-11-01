@@ -14,14 +14,15 @@ import Logout from './components/Logout';
 
 class App extends Component {
   state = {
-    user: {}
+    user: {},
+    sortBy: ''
   };
   render() {
     return (
       <div className="App">
         <Head className="Head" user={this.state.user} />
         <Nav />
-        <Sections />
+        <Sections handleSelect={this.selectSortBy}/>
         <div className="articles">
           {this.state.user.name ? (
             <Router>
@@ -51,6 +52,12 @@ class App extends Component {
     }
     
   }
+
+  selectSortBy = ({target : {value, name}}) => {
+    this.setState({
+        sortBy : value
+    })
+}
 
   fetchName = (event, username) => {
     event.preventDefault()

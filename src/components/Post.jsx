@@ -17,7 +17,7 @@ class Post extends Component {
                 <label>Article</label>
                 <textarea onChange={this.handleOnChange} name="article" id="" cols="30" rows="10"></textarea>
                 <label>Category</label>
-                <select name="" id="" onChange={this.handleOnChange}>
+                <select name="" id="" onChange={this.selectChange}>
                 <option value="football">Football</option>
                 <option value="coding">Coding</option>
                 <option value="cooking">Cooking</option>
@@ -27,6 +27,12 @@ class Post extends Component {
         );
     }
 
+    selectChange = ({target : {value, name}}) => {
+        this.setState({
+            slug : value
+        })
+    }
+    
     handleOnChange = ({target : {value, name}}) => {
         this.setState({
             [name] : value

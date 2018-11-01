@@ -9,7 +9,13 @@ class Sections extends Component {
     render() {
         return (
             <div className='section'>
-                Sections
+                <h3>Search By</h3>
+                <select name="" id="" onChange={this.props.handleSelect}>
+                <option value="football">Popular</option>
+                <option value="coding">New</option>
+                </select>
+
+                <h3>Sections</h3>
                 {this.state.topics.map((topic) => {
                     return <div key={topic._id}><Link to={`/topics/${topic.slug}`} >{topic.title}</Link> </div>
                 })}

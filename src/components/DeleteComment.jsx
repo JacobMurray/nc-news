@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import * as api from '../api';
 
-class DeleteComment extends Component {
-    render() {
-        return (
-            <div>
-                <button onClick={() => this.handleClick()}>Delete Comment</button>
-            </div>
-        );
-    }
-
-    handleClick = () => {
-        api.deleteComment(this.props.id)
-        this.forceUpdate()
-    }
-}
+const DeleteComment = props => {
+  return (
+    <div>
+      <button onClick={() => props.handleClick(props.id)}>Delete Comment</button>
+    </div>
+  );
+};
 
 DeleteComment.propTypes = {
-    id: PropTypes.string
+    id: PropTypes.string,
+    handleClick: PropTypes.func
 };
 
 export default DeleteComment;

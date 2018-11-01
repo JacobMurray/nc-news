@@ -26,7 +26,7 @@ class Comments extends Component {
                 <h4>Commentor: {comment.created_by.name}</h4>
                 <img src={comment.created_by.avatar_url} alt='avatar img'></img>
                 <Votes type='comments' votes={comment.votes} id={comment._id} />
-                {this.props.user._id === comment.created_by._id && <DeleteComment id={comment._id}/>}
+                {this.props.user._id === comment.created_by._id && <DeleteComment id={comment._id} handleClick={this.deleteComment}/>}
               </div>
             );
           })}
@@ -50,7 +50,17 @@ class Comments extends Component {
         return {comments : [ comment,...prevState.comments ]};
       });
   };
+
+  deleteComment = (id) => {
+    const newComments = this.state.comments.filter(comment => comment._id !== id)
+    api.deleteComment(id)
+    .then(this.setState({
+      comments : newComments
+    }))
 }
+}
+
+
 
 Comments.propTypes = {
   article_id: PropTypes.string,
