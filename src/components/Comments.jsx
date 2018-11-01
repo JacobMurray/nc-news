@@ -24,6 +24,7 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
+                <img src={comment.created_by.avatar_url} alt='avatar img'></img>
                 <Votes type='comments' votes={comment.votes} id={comment._id} />
                 {this.props.user._id === comment.created_by._id && <DeleteComment id={comment._id}/>}
               </div>
