@@ -16,7 +16,7 @@ class Article extends Component {
         <div className="article">
           <h3>{title}</h3>
           <p>{body}</p>
-          <h4>created at: {created_at}</h4>
+          <h4>created at: {Date.parse(created_at)}</h4>
           <h4>Belongs to: {belongs_to}</h4>
           <Votes votes={votes} id={this.props.article_id} type={'articles'}/>
           {created_by && <h3>Created_by: {created_by.name}</h3>}

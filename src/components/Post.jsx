@@ -38,7 +38,6 @@ class Post extends Component {
         const {title, article, slug} = this.state
         const {_id} = this.props.user
         const body = {title, body : article, created_by :_id}
-        console.log(body)
         api.postArticle(body, slug)
         .then((article) => navigate(`/articles/${article._id}`))
     }
