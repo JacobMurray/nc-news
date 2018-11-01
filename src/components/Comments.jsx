@@ -50,6 +50,7 @@ class Comments extends Component {
 }
 
 Comments.propTypes = {
-  article_id: PropTypes.string
+  article_id: PropTypes.string,
+  user: PropTypes.object
 };
 export default Comments;

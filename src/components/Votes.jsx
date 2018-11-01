@@ -3,14 +3,16 @@ import * as api from '../api';
 
 class Votes extends Component {
     state = {
-        votes : this.props.votes
+        votes : this.props.votes,
+        upVote : false,
+        downVote : false
     }
     render() {
         return (
             <div>
                 <h4>votes: {this.state.votes}</h4>
-                <button onClick={() =>this.handleClick('up', 1)}><i className="fa fa-arrow-up"></i></button>
-                <button onClick={() =>this.handleClick('down', -1)}><i className="fa fa-arrow-down"></i></button>
+                <button disabled={this.state.upVote} id='upVote' onClick={(event) =>this.handleClick(event,'up', 1)}><i className="fa fa-arrow-up"></i></button>
+                <button disabled={this.state.downVote} id='downVote' onClick={(event) =>this.handleClick(event, 'down', -1)}><i className="fa fa-arrow-down"></i></button>
             </div>
         );
     }
@@ -22,10 +24,12 @@ class Votes extends Component {
             })
         }
     }
-    handleClick = (direction, value) => {
+    handleClick = (event, direction, value) => {
+        const vote =event.target.id
         api.patchVote(direction, this.props.article_id ,this.props.comment)
         .then(this.setState(prevState => {
-          return { votes : prevState.votes + value }
+          return { votes : prevState.votes + value,
+                    [vote] : !prevState[vote] }
         }))
       }
 }

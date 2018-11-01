@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import PropTypes from 'prop-types';
 
 class CommentAdder extends Component {
     state = {
@@ -34,8 +35,12 @@ class CommentAdder extends Component {
             return this.props.addComment(comment)
         })
     }
-//(comment)=>this.props.addComment(comment)
-    
+}
+
+CommentAdder.propTypes = {
+    user: PropTypes.object,
+    article_id: PropTypes.string,
+    addComment: PropTypes.func
 }
 
 export default CommentAdder;

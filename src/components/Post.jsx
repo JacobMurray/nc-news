@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import {navigate} from '@reach/router'
+import {navigate} from '@reach/router';
+import PropTypes from 'prop-types';
 
 class Post extends Component {
     state = {
@@ -41,5 +42,9 @@ class Post extends Component {
         .then((article) => navigate(`/articles/${article._id}`))
     }
 }
+
+Post.propTypes = {
+    user: PropTypes.object
+  };
 
 export default Post;
