@@ -11,8 +11,8 @@ class Sections extends Component {
             <div className='section'>
                 <h3>Search By</h3>
                 <select name="" id="" onChange={this.props.handleSelect}>
-                <option value="football">Popular</option>
-                <option value="coding">New</option>
+                <option value="popular">Popular</option>
+                <option value="new">New</option>
                 </select>
 
                 <h3>Sections</h3>

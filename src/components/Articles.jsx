@@ -39,6 +39,22 @@ class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       this.fetchArticles();
     }
+    if (prevProps.sortBy !== this.props.sortBy){
+      this.sortArticles(this.props.sortBy)
+    }
+  }
+
+  sortArticles= (sortBy) => {
+    const sort = sortBy === 'new' ? 'created_at' : 'votes'
+    let arr = [...this.state.articles]
+    const newArr = arr.sort((a,b)=> {
+      if(a.votes > b.votes) return -1
+      if(a.votes < b.votes) return 1
+      return 0
+    })
+    this.setState({
+      articles : newArr
+    })
   }
 
   fetchArticles = () => {
