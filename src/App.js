@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import Sections from './components/Sections';
 import Articles from './components/Articles';
 import Foot from './components/Foot';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Post from './components/Post';
 import Article from './components/Article';
 import Login from './components/Login';
@@ -57,7 +57,7 @@ class App extends Component {
     api.getUserName(username)
     .then((user) => this.setState({
       user
-    }))
+    })).then(navigate('/'))
   }
   logout = () => {
     localStorage.clear()

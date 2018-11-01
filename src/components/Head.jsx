@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 const Head = ({user : {name, avatar_url}}) => {
     return (
         <div className='head'>
-        <p>{name}</p>
-        <img src={avatar_url} alt='avatar img'></img>
+        <p> Logged in as: {name}</p>
         </div>
     );
 };
