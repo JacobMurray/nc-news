@@ -10,12 +10,13 @@ class Article extends Component {
     article: {}
   };
   render() {
-    const { belongs_to, body, created_by, title, votes } = this.state.article;
+    const { belongs_to, body, created_by, title, votes, created_at } = this.state.article;
     return (
       <div>
         <div className="article">
           <h3>{title}</h3>
           <p>{body}</p>
+          <h4>created at: {created_at}</h4>
           <h4>Belongs to: {belongs_to}</h4>
           <Votes votes={votes} id={this.props.article_id} type={'articles'}/>
           {created_by && <h3>Created_by: {created_by.name}</h3>}

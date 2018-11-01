@@ -27,7 +27,7 @@ class App extends Component {
             <Router>
               <Articles path="/" />
               <Articles path={`/topics/:topic`} />
-              <Post path="/post" user={this.state}/>
+              <Post path="/post" user={this.state.user}/>
               <Article path="/articles/:article_id" user={this.state.user}/>
               <Logout path="/logout" handleLogout={this.logout}/>
             </Router>
