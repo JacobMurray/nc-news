@@ -55,7 +55,7 @@ class App extends Component {
     
   }
 
-  selectSortBy = ({target : {value, name}}) => {
+  selectSortBy = ({target : {value}}) => {
     this.setState({
         sortBy : value
     })
