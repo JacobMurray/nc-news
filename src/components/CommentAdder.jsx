@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import PropTypes from 'prop-types';
+import './css/commentAdder.css'
 
 class CommentAdder extends Component {
     state = {
@@ -8,9 +9,9 @@ class CommentAdder extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className='commentAdder' onSubmit={this.handleSubmit}>
                 <label>Comment:</label>
-                <textarea value={this.state.comment} onChange={this.handleOnChange} name="comment" id="" cols="30" rows="10"></textarea>
+                <textarea value={this.state.comment} onChange={this.handleOnChange} name="comment" id="" cols="10" rows="3"></textarea>
                 <button type="submit">Submit</button>
             </form>
         );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import {navigate} from '@reach/router';
 import PropTypes from 'prop-types';
+import './css/post.css'
 
 class Post extends Component {
     state = {
@@ -11,7 +12,7 @@ class Post extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleOnSubmit}>
+            <form className='postForm' onSubmit={this.handleOnSubmit}>
                 <label>Title</label>
                 <input onChange={this.handleOnChange} type="text" name="title" id=""/>
                 <label>Article</label>
