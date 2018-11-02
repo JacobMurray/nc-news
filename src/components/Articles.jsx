@@ -4,6 +4,7 @@ import './css/Articles.css';
 import { Link } from '@reach/router';
 import Votes from './Votes';
 import DeleteComment from './DeleteComment';
+import {timeSince} from '../utils.js'
 
 class Articles extends Component {
   state = {
@@ -21,7 +22,8 @@ class Articles extends Component {
                 <div  >
                   <h3 className="artTitle">{article.title}</h3>
                   <p>{article.body}</p>
-                  <h4>created at: {article.created_at}</h4>
+                  <h4>created: {timeSince(Date.parse(article.created_at))} ago</h4>
+
                 </div>
               </Link>
               <Votes votes={article.votes} id={article._id} type={'articles'}/>
