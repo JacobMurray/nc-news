@@ -11,6 +11,7 @@ import Article from './components/Article';
 import Login from './components/Login';
 import * as api from './api';
 import Logout from './components/Logout';
+import NotFound from './components/NotFound';
 
 class App extends Component {
   state = {
@@ -31,6 +32,7 @@ class App extends Component {
               <Post path="/post" user={this.state.user}/>
               <Article path="/articles/:article_id" user={this.state.user}/>
               <Logout path="/logout" handleLogout={this.logout}/>
+              <NotFound path="/*"/>
             </Router>
           ) : (
             <Login handleSubmit={this.fetchName}/>
@@ -70,7 +72,7 @@ class App extends Component {
     localStorage.clear()
     this.setState({
       user: {}
-    })
+    }).catch(err => navigate('/err' , {replace: true}))
   }
 
 }

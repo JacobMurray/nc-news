@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 class Login extends Component {
     state = {
-        username: ''
+        username: 'cooljmessy'
     }
     render() {
         return (
             <form onSubmit={(event) => this.props.handleSubmit(event, this.state.username)}>
                 <label>username</label>
-                <input onChange={this.handleOnChange} type="text" name="username" id=""/>
+                <input value={this.state.username} onChange={this.handleOnChange} type="text" name="username" id=""/>
                 <button>Submit</button>
             </form>
         );

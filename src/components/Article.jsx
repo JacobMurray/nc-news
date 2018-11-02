@@ -5,6 +5,7 @@ import './css/Articles.css';
 import Comments from './Comments';
 import Votes from './Votes';
 import {timeSince} from '../utils.js'
+import {navigate} from '@reach/router';
 
 class Article extends Component {
   state = {
@@ -38,7 +39,7 @@ class Article extends Component {
       this.setState({
         article
       })
-    );
+    ).catch(err => navigate('/err' , {replace: true}))
   };
 
   
