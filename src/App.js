@@ -26,8 +26,8 @@ class App extends Component {
         <div className="articles">
           {this.state.user.name ? (
             <Router>
-              <Articles path="/" sortBy={this.state.sortBy}/>
-              <Articles path={`/topics/:topic`} sortBy={this.state.sortBy}/>
+              <Articles path="/" sortBy={this.state.sortBy} user={this.state.user}/>
+              <Articles path={`/topics/:topic`} sortBy={this.state.sortBy} user={this.state.user}/>
               <Post path="/post" user={this.state.user}/>
               <Article path="/articles/:article_id" user={this.state.user}/>
               <Logout path="/logout" handleLogout={this.logout}/>

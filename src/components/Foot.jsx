@@ -3,7 +3,7 @@ import React from 'react';
 const Foot = () => {
     return (
         <div className='foot'>
-            Foot
+            <h4>Created by Jacob Murray</h4>
         </div>
     );
 };

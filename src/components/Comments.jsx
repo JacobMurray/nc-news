@@ -53,7 +53,7 @@ class Comments extends Component {
 
   deleteComment = (id) => {
     const newComments = this.state.comments.filter(comment => comment._id !== id)
-    api.deleteComment(id)
+    api.deleteComment(id, 'comments')
     .then(this.setState({
       comments : newComments
     }))

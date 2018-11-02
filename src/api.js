@@ -63,9 +63,9 @@ export const patchVote = (direction, id, type) => {
     )
 }
 
-export const deleteComment = id => {
+export const deleteComment = (id, type) => {
     return (
-        axios.delete(`${API_URL}/api/comments/${id}`)
+        axios.delete(`${API_URL}/api/${type}/${id}`)
         .then(({data})=> data)
     )
 }

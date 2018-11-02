@@ -3,6 +3,7 @@ import * as api from '../api';
 import './css/Articles.css';
 import { Link } from '@reach/router';
 import Votes from './Votes';
+import DeleteComment from './DeleteComment';
 
 class Articles extends Component {
   state = {
@@ -20,10 +21,11 @@ class Articles extends Component {
                 <div  >
                   <h3 className="artTitle">{article.title}</h3>
                   <p>{article.body}</p>
-                  
+                  <h4>created at: {article.created_at}</h4>
                 </div>
               </Link>
               <Votes votes={article.votes} id={article._id} type={'articles'}/>
+              {this.props.user._id === article.created_by._id && <DeleteComment id={article._id} handleClick={this.deleteArticle}/>}
               </div>
             );
           })}
@@ -48,14 +50,22 @@ class Articles extends Component {
     const sort = sortBy === 'new' ? 'created_at' : 'votes'
     let arr = [...this.state.articles]
     const newArr = arr.sort((a,b)=> {
-      if(a.votes > b.votes) return -1
-      if(a.votes < b.votes) return 1
+      if(a[sort] > b[sort]) return -1
+      if(a[sort] < b[sort]) return 1
       return 0
     })
     this.setState({
       articles : newArr
     })
   }
+
+  deleteArticle = (id) => {
+    const newArticles = this.state.articles.filter(article => article._id !== id)
+    api.deleteComment(id, 'articles')
+    .then(this.setState({
+      articles : newArticles
+    }))
+}
 
   fetchArticles = () => {
     return api.getArticles(this.props.topic).then(articles =>
