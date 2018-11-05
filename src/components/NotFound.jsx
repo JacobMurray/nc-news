@@ -1,9 +1,11 @@
 import React from 'react';
 
-const NotFound = () => {
+const NotFound = (props) => {
+  console.log(props)
   return (
     <div>
-      <h2>Page Not Found</h2>
+      <h2>{props.location.state.message}</h2>
+      <h3>{props.location.state.code}</h3>
     </div>
   );
 };

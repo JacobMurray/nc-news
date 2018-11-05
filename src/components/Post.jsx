@@ -53,7 +53,17 @@ class Post extends Component {
     const body = { title, body: article, created_by: _id };
     api
       .postArticle(body, slug)
-      .then(article => navigate(`/articles/${article._id}`));
+      .then(article => navigate(`/articles/${article._id}`))
+      .catch(err =>
+        navigate('/err', {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.data.message,
+            from: '/article'
+          }
+        })
+      );
   };
 }
 

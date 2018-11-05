@@ -49,7 +49,9 @@ class Article extends Component {
           article
         })
       )
-      .catch(err => navigate('/err', { replace: true }));
+      .catch(err =>
+        navigate('/err', { replace: true, state: { code: err.response.status, message: err.response.data.message, from: '/article' } })
+      );
   };
 }
 

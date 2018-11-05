@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import * as api from '../api';
 import PropTypes from 'prop-types';
 
@@ -37,12 +37,23 @@ class Sections extends Component {
   }
 
   fetchTopics = () => {
-    return api.getTopics();
+    return api
+      .getTopics()
+      .catch(err =>
+        navigate('/err', {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.data.message,
+            from: '/article'
+          }
+        })
+      );
   };
 }
 
 Sections.propTypes = {
-    handleSubmit: PropTypes.func
-  };
+  handleSubmit: PropTypes.func
+};
 
 export default Sections;

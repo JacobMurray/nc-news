@@ -6,6 +6,7 @@ import CommentAdder from './CommentAdder';
 import Votes from './Votes';
 import Delete from './Delete';
 import { timeSince } from '../utils.js';
+import { navigate } from '@reach/router';
 
 class Comments extends Component {
   state = {
@@ -25,16 +26,20 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
-                <img src={comment.created_by.avatar_url} alt="avatar img" onError={e => e.target.src='http://thesweetpeople.com/wp/wp-content/uploads/2015/08/person_placeholder.png'} />
+                <img
+                  src={comment.created_by.avatar_url}
+                  alt="avatar img"
+                  onError={e =>
+                    (e.target.src =
+                      'http://thesweetpeople.com/wp/wp-content/uploads/2015/08/person_placeholder.png')
+                  }
+                />
                 <h4>
                   created: {timeSince(Date.parse(comment.created_at))} ago
                 </h4>
                 <Votes type="comments" votes={comment.votes} id={comment._id} />
                 {this.props.user._id === comment.created_by._id && (
-                  <Delete
-                    id={comment._id}
-                    handleClick={this.deleteComment}
-                  />
+                  <Delete id={comment._id} handleClick={this.deleteComment} />
                 )}
               </div>
             );
@@ -47,11 +52,23 @@ class Comments extends Component {
   }
 
   fetchComments = () => {
-    api.getArticleComments(this.props.article_id).then(comments =>
-      this.setState({
-        comments
-      })
-    );
+    api
+      .getArticleComments(this.props.article_id)
+      .then(comments =>
+        this.setState({
+          comments
+        })
+      )
+      .catch(err =>
+        navigate('/err', {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.data.message,
+            from: '/article'
+          }
+        })
+      );
   };
 
   addComment = comment => {
@@ -64,11 +81,23 @@ class Comments extends Component {
     const newComments = this.state.comments.filter(
       comment => comment._id !== id
     );
-    api.deleteComment(id, 'comments').then(
-      this.setState({
-        comments: newComments
-      })
-    );
+    api
+      .deleteComment(id, 'comments')
+      .then(
+        this.setState({
+          comments: newComments
+        })
+      )
+      .catch(err =>
+        navigate('/err', {
+          replace: true,
+          state: {
+            code: err.response.status,
+            message: err.response.data.message,
+            from: '/article'
+          }
+        })
+      );
   };
 }
 

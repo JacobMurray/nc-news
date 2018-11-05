@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import './css/Articles.css';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import Votes from './Votes';
 import Delete from './Delete';
 import { timeSince } from '../utils.js';
@@ -12,7 +12,6 @@ class Articles extends Component {
     articles: []
   };
   render() {
-    console.log(this.props)
     return (
       
       <div className="articles">
@@ -90,6 +89,9 @@ class Articles extends Component {
       this.setState({
         articles: newArticles
       })
+    )
+    .catch(err =>
+      navigate('/err', { replace: true, state: { code: err.response.status, message: err.response.data.message, from: '/article' } })
     );
   };
 
@@ -98,6 +100,9 @@ class Articles extends Component {
       this.setState({
         articles
       })
+    )
+    .catch(err =>
+      navigate('/err', { replace: true, state: { code: err.response.status, message: err.response.data.message, from: '/article' } })
     );
   };
 }
