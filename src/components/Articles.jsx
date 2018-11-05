@@ -6,6 +6,7 @@ import Votes from './Votes';
 import Delete from './Delete';
 import { timeSince } from '../utils.js';
 import PropTypes from 'prop-types';
+import {Doughnut} from 'react-chartjs-2';
 
 class Articles extends Component {
   state = {
@@ -13,10 +14,37 @@ class Articles extends Component {
     loading:true
   };
   render() {
+    const numOfArticles = this.state.articles.reduce((acc,article) =>{
+      if(!acc[article.belongs_to]) acc[article.belongs_to] = 1
+      else acc[article.belongs_to]++
+      return acc
+    },{})
+    console.log(numOfArticles)
+    const data = {
+      labels: [
+        'Coding',
+        'Football',
+        'Cooking'
+      ],
+      datasets: [{
+        data: [numOfArticles.coding, numOfArticles.football, numOfArticles.cooking],
+        backgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56'
+        ],
+        hoverBackgroundColor: [
+        '#FF6384',
+        '#36A2EB',
+        '#FFCE56'
+        ]
+      }]
+    };
     return (
       
       <div className="articles">
         {this.props.topic} Articles
+        <Doughnut data={data} />
         {this.state.loading ?  <h2>loading ...</h2> :
           this.state.articles.map(article => {
             return (
@@ -49,12 +77,11 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    this.fetchArticles();
+    this.fetchArticles()
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.userpage && prevProps.userpage !== this.props.userpage){
-      console.log('hello')
       let arr = [...this.state.articles];
       const newState = arr.filter( article => article.created_by._id === this.props.user._id)
       this.setState({
