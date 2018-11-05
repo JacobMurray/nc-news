@@ -26,7 +26,7 @@ class Votes extends Component {
     }
     handleClick = (direction) => {
         
-        const voteMod = handleVoteMod(this.state.voteMod, direction, this.props.article_id , this.props.type);
+        const voteMod = handleVoteMod(this.state.voteMod, direction, this.props.id , this.props.type);
         this.setState({
             voteMod
         })
