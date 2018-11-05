@@ -12,7 +12,9 @@ class Articles extends Component {
     articles: []
   };
   render() {
+    console.log(this.props)
     return (
+      
       <div className="articles">
         {this.props.topic} Articles
         {this.state.articles[0] &&
@@ -51,6 +53,14 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if(this.props.userpage && prevProps.userpage !== this.props.userpage){
+      console.log('hello')
+      let arr = [...this.state.articles];
+      const newState = arr.filter( article => article.created_by._id === this.props.user._id)
+      this.setState({
+        articles: newState
+      })
+    }
     if (prevProps.topic !== this.props.topic) {
       this.fetchArticles();
     }
