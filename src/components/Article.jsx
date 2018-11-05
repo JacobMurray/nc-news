@@ -9,7 +9,8 @@ import { navigate } from '@reach/router';
 
 class Article extends Component {
   state = {
-    article: {}
+    article: {},
+    loading: true
   };
   render() {
     const {
@@ -21,6 +22,7 @@ class Article extends Component {
       created_at
     } = this.state.article;
     return (
+      this.state.loading ?  <h2>loading ...</h2> :
       <div>
         <div className="article">
           <h3>{title}</h3>
@@ -46,7 +48,8 @@ class Article extends Component {
       .getArticleById(this.props.article_id)
       .then(article =>
         this.setState({
-          article
+          article,
+          loading: false
         })
       )
       .catch(err =>

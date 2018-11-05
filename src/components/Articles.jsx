@@ -9,14 +9,15 @@ import PropTypes from 'prop-types';
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    loading:true
   };
   render() {
     return (
       
       <div className="articles">
         {this.props.topic} Articles
-        {this.state.articles[0] &&
+        {this.state.loading ?  <h2>loading ...</h2> :
           this.state.articles.map(article => {
             return (
               <div className="article" key={article._id}>
@@ -98,7 +99,8 @@ class Articles extends Component {
   fetchArticles = () => {
     return api.getArticles(this.props.topic).then(articles =>
       this.setState({
-        articles
+        articles,
+        loading: false
       })
     )
     .catch(err =>
