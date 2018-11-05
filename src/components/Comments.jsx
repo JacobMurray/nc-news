@@ -25,7 +25,7 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
-                <img src={comment.created_by.avatar_url} alt="avatar img" onerror={this.src='https://i.pinimg.com/564x/39/62/ec/3962eca164e60cf46f979c1f57d4078b.jpg'} />
+                <img src={comment.created_by.avatar_url} alt="avatar img" onError={e => e.target.src='http://thesweetpeople.com/wp/wp-content/uploads/2015/08/person_placeholder.png'} />
                 <h4>
                   created: {timeSince(Date.parse(comment.created_at))} ago
                 </h4>

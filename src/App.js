@@ -12,6 +12,7 @@ import Login from './components/Login';
 import * as api from './api';
 import Logout from './components/Logout';
 import NotFound from './components/NotFound';
+import User from './components/User';
 
 class App extends Component {
   state = {
@@ -38,6 +39,7 @@ class App extends Component {
                 user={this.state.user}
               />
               <Post path="/post" user={this.state.user} />
+              <User path="/user" user={this.state.user} />
               <Article path="/articles/:article_id" user={this.state.user} />
               <Logout path="/logout" handleLogout={this.logout} />
               <NotFound path="/*" />
