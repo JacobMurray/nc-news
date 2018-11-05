@@ -10,8 +10,8 @@ const DeleteComment = props => {
 };
 
 DeleteComment.propTypes = {
-    id: PropTypes.string,
-    handleClick: PropTypes.func
+  id: PropTypes.string,
+  handleClick: PropTypes.func
 };
 
 export default DeleteComment;

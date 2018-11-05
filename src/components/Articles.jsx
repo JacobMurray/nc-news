@@ -4,7 +4,8 @@ import './css/Articles.css';
 import { Link } from '@reach/router';
 import Votes from './Votes';
 import DeleteComment from './DeleteComment';
-import {timeSince} from '../utils.js'
+import { timeSince } from '../utils.js';
+import PropTypes from 'prop-types';
 
 class Articles extends Component {
   state = {
@@ -18,16 +19,26 @@ class Articles extends Component {
           this.state.articles.map(article => {
             return (
               <div className="article" key={article._id}>
-              <Link  to={`/articles/${article._id}`}>
-                <div  >
-                  <h3 className="artTitle">{article.title}</h3>
-                  <p>{article.body}</p>
-                  <h4>created: {timeSince(Date.parse(article.created_at))} ago</h4>
-
-                </div>
-              </Link>
-              <Votes votes={article.votes} id={article._id} type={'articles'}/>
-              {this.props.user._id === article.created_by._id && <DeleteComment id={article._id} handleClick={this.deleteArticle}/>}
+                <Link to={`/articles/${article._id}`}>
+                  <div>
+                    <h3 className="artTitle">{article.title}</h3>
+                    <p>{article.body}</p>
+                    <h4>
+                      created: {timeSince(Date.parse(article.created_at))} ago
+                    </h4>
+                  </div>
+                </Link>
+                <Votes
+                  votes={article.votes}
+                  id={article._id}
+                  type={'articles'}
+                />
+                {this.props.user._id === article.created_by._id && (
+                  <DeleteComment
+                    id={article._id}
+                    handleClick={this.deleteArticle}
+                  />
+                )}
               </div>
             );
           })}
@@ -43,31 +54,34 @@ class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       this.fetchArticles();
     }
-    if (prevProps.sortBy !== this.props.sortBy){
-      this.sortArticles(this.props.sortBy)
+    if (prevProps.sortBy !== this.props.sortBy) {
+      this.sortArticles(this.props.sortBy);
     }
   }
 
-  sortArticles= (sortBy) => {
-    const sort = sortBy === 'new' ? 'created_at' : 'votes'
-    let arr = [...this.state.articles]
-    const newArr = arr.sort((a,b)=> {
-      if(a[sort] > b[sort]) return -1
-      if(a[sort] < b[sort]) return 1
-      return 0
-    })
+  sortArticles = sortBy => {
+    const sort = sortBy === 'new' ? 'created_at' : 'votes';
+    let arr = [...this.state.articles];
+    const newArr = arr.sort((a, b) => {
+      if (a[sort] > b[sort]) return -1;
+      if (a[sort] < b[sort]) return 1;
+      return 0;
+    });
     this.setState({
-      articles : newArr
-    })
-  }
+      articles: newArr
+    });
+  };
 
-  deleteArticle = (id) => {
-    const newArticles = this.state.articles.filter(article => article._id !== id)
-    api.deleteComment(id, 'articles')
-    .then(this.setState({
-      articles : newArticles
-    }))
-}
+  deleteArticle = id => {
+    const newArticles = this.state.articles.filter(
+      article => article._id !== id
+    );
+    api.deleteComment(id, 'articles').then(
+      this.setState({
+        articles: newArticles
+      })
+    );
+  };
 
   fetchArticles = () => {
     return api.getArticles(this.props.topic).then(articles =>
@@ -77,5 +91,10 @@ class Articles extends Component {
     );
   };
 }
+
+Articles.propTypes = {
+  user: PropTypes.object,
+  sortBy: PropTypes.string
+};
 
 export default Articles;

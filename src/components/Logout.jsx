@@ -10,7 +10,7 @@ const Logout = (props) => {
 };
 
 Logout.propTypes = {
-    handleLLogout: PropTypes.func
+    handleLogout: PropTypes.func
   };
 
 export default Logout;
