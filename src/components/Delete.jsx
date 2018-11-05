@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DeleteComment = props => {
+const Delete = props => {
   return (
     <div>
       <button onClick={() => props.handleClick(props.id)}>Delete</button>
@@ -9,9 +9,9 @@ const DeleteComment = props => {
   );
 };
 
-DeleteComment.propTypes = {
+Delete.propTypes = {
   id: PropTypes.string,
   handleClick: PropTypes.func
 };
 
-export default DeleteComment;
+export default Delete;

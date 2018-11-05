@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './css/comment.css';
 import CommentAdder from './CommentAdder';
 import Votes from './Votes';
-import DeleteComment from './DeleteComment';
+import Delete from './Delete';
 import { timeSince } from '../utils.js';
 
 class Comments extends Component {
@@ -25,13 +25,13 @@ class Comments extends Component {
               <div key={comment._id} className="comment">
                 <p>{comment.body}</p>
                 <h4>Commentor: {comment.created_by.name}</h4>
-                <img src={comment.created_by.avatar_url} alt="avatar img" />
+                <img src={comment.created_by.avatar_url} alt="avatar img" onerror={this.src='https://i.pinimg.com/564x/39/62/ec/3962eca164e60cf46f979c1f57d4078b.jpg'} />
                 <h4>
                   created: {timeSince(Date.parse(comment.created_at))} ago
                 </h4>
                 <Votes type="comments" votes={comment.votes} id={comment._id} />
                 {this.props.user._id === comment.created_by._id && (
-                  <DeleteComment
+                  <Delete
                     id={comment._id}
                     handleClick={this.deleteComment}
                   />

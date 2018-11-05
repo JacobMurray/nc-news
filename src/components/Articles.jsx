@@ -3,7 +3,7 @@ import * as api from '../api';
 import './css/Articles.css';
 import { Link } from '@reach/router';
 import Votes from './Votes';
-import DeleteComment from './DeleteComment';
+import Delete from './Delete';
 import { timeSince } from '../utils.js';
 import PropTypes from 'prop-types';
 
@@ -34,7 +34,7 @@ class Articles extends Component {
                   type={'articles'}
                 />
                 {this.props.user._id === article.created_by._id && (
-                  <DeleteComment
+                  <Delete
                     id={article._id}
                     handleClick={this.deleteArticle}
                   />
