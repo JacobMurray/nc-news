@@ -19,7 +19,6 @@ class Articles extends Component {
       else acc[article.belongs_to]++
       return acc
     },{})
-    console.log(numOfArticles)
     const data = {
       labels: [
         'Coding',
