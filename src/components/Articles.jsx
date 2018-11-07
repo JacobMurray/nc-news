@@ -43,7 +43,7 @@ class Articles extends Component {
       
       <div className="articles">
         {this.props.topic} Articles
-        <Doughnut data={data} />
+        {!this.props.topic && <Doughnut data={data} />}
         {this.state.loading ?  <h2>loading ...</h2> :
           this.state.articles.map(article => {
             return (

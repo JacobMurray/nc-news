@@ -6,6 +6,7 @@ import Comments from './Comments';
 import Votes from './Votes';
 import { timeSince } from '../utils.js';
 import { navigate } from '@reach/router';
+import Delete from './Delete';
 
 class Article extends Component {
   state = {
@@ -31,6 +32,12 @@ class Article extends Component {
           <h4>Belongs to: {belongs_to}</h4>
           <Votes votes={votes} id={this.props.article_id} type={'articles'} />
           {created_by && <h3>Created_by: {created_by.name}</h3>}
+          {this.props.user._id === this.state.article.created_by._id && (
+                  <Delete
+                    id={this.state.article._id}
+                    handleClick={this.deleteArticle}
+                  />
+                )}
         </div>
         <div className="comments">
           <Comments user={this.props.user} article_id={this.props.article_id} />
@@ -55,6 +62,15 @@ class Article extends Component {
       .catch(err =>
         navigate('/err', { replace: true, state: { code: err.response.status, message: err.response.data.message, from: '/article' } })
       );
+  };
+
+  deleteArticle = id => {
+    api.deleteComment(id, 'articles').then(
+      navigate('/')
+    )
+    .catch(err =>
+      navigate('/err', { replace: true, state: { code: err.response.status, message: err.response.data.message, from: '/article' } })
+    );
   };
 }
 
