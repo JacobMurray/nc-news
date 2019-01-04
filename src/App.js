@@ -16,7 +16,7 @@ import User from './components/User';
 
 class App extends Component {
   state = {
-    user: {},
+    user: {name: 'cooljmessy'},
     sortBy: ''
   };
   render() {
